@@ -1,0 +1,11 @@
+@if (pokemon$ | async; as pokemon) {
+    <h1>Ficha del pokemon {{pokemon.name}}</h1>
+
+    <section class="inline-grid border-5 rounded grid-col-2">
+        <div>Pokédex: {{pokemon.id}}</div>
+        <div>{{pokemon.height}}cm</div>
+        <div>{{pokemon.weight}}g</div>
+        <img [src]="pokemon.image" [alt]="pokemon.name">
+        <div></div>
+    </section>
+}
