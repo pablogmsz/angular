@@ -1,0 +1,17 @@
+<h1>Todos los Pokémon</h1>
+
+@if (pokemons$ | async; as pokemons) {
+    <section class="inline-flex flex-col gap-4">
+        <!-- El @for solo cuando haya arrays. -->
+        @for (pokemon of pokemons; track $index) {
+            <!-- Con los data hay que poner el attr. -->
+            <button type="button" [attr.data-pokemon-id]="pokemon.id"
+                class="btn"
+                (click)="pokemonClicked($event)"
+            >{{pokemon.name}}</button>
+        }
+    </section>
+
+} @else {
+    <spinner-wait></spinner-wait>
+}

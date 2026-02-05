@@ -1,0 +1,28 @@
+<nav>
+    <ul>
+        <li>
+            <a routerLink="pokemons">Pokemons</a>
+            @if (mostrarListaPokemons() === "si") {
+                @if (pokemons$ | async; as pokemons) {
+                    <ul class="m-8">
+                        @for (pokemon of pokemons; track $index) {
+                            <li><a [routerLink]="`pokemons/${pokemon.id}`">{{pokemon.name}}</a></li>
+                        }
+                    </ul>
+
+                } @else {
+                    <spinner-wait></spinner-wait>
+                }
+            }
+
+            <select (change)="goToPoke($event)">
+                <option disabled selected>Elige el Pokemon</option>
+                @if (pokemons$ | async; as pokemons) {
+                    @for (pokemon of pokemons; track $index) {
+                        <option [value]="pokemon.id">{{pokemon.name}}</option>
+                    }
+                }
+            </select>
+        </li>
+    </ul>
+</nav>
